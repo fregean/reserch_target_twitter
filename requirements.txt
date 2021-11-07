@@ -50,10 +50,6 @@ cligj==0.7.2
 cloudpickle @ file:///tmp/build/80754af9/cloudpickle_1594141588948/work
 clyent==1.2.2
 colorama==0.4.3
-conda==4.9.2
-conda-build==3.18.11
-conda-package-handling @ file:///opt/concourse/worker/volumes/live/a7e34989-4c54-4cb6-4156-4e58ee270730/volume/conda-package-handling_1603018121300/work
-conda-verify==3.4.2
 contextlib2==0.6.0.post1
 coverage==4.5.1
 cryptography==2.9.2
