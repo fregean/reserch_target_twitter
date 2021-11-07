@@ -121,16 +121,23 @@ def get_keyword():
 def post_tweets():
     if request.method == 'POST':
         keyword = request.form.get('keyword')
+        mail_address = request.form.get('mail_address')
+        session['client'] = {'mail_address': mail_address , 'keyword': keyword}
         json_response = recent_search_v2.search_tweet(keyword, get_oauth())
         tweets = processing.return_tweets(json_response)
         df_values = tweets.values.tolist()
         df_columns = tweets.columns.tolist()
     return render_template('post_tweets.html', df_values=df_values, df_columns=df_columns, title='いいね数の多いツイート上位10件',)
 
-@app.route('/keep_waiting', methods=['GET'])
-def keep_waiting():
+@app.route('/display_information', methods=['GET'])
+def display_information():
     twitter_id = request.args.get('twitter_id')
-    return render_template("keep_waiting.html")
+    session['client']['twitter_id'] = twitter_id
+    with open('data/db_tweets.json', mode='w') as f:
+        data = json.dumps(session)
+        f.write(data)
+    return render_template('display_information.html')
+
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 8000))

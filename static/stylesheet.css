@@ -57,9 +57,12 @@ form {
 
 footer {
     background-color: #F7F7F7;
-    height: 110px;
-    margin: -8px;
-    position: relative;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center; /*下に固定*/
 }
 
 .footer_img {

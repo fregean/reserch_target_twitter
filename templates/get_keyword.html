@@ -15,14 +15,17 @@
 
     <div class='main'>
         <h2> Finding Twitter Targeting_users Application</h2>
-        <p>関心のあるキーワードを一つ入力してください（例：「Kaggle」「業務効率化」）</p>
         <form action='/post_tweets' method='POST' enctype="multipart/form-data">
             <div>
+                <p>関心のあるキーワードを一つ入力してください</p>
                 <label for="keyword">キーワード：</label>
                 <input type='text' name='keyword' placeholder='キーワード'>
+                <p>また、最後に結果を送信する送信先も入力してください</p>
+                <label for="keyword">送信先メールアドレス：</label>
+                <input type='text' name='mail_address' placeholder='メールアドレス'>
             </div>
             <div>
-                <input type="submit" value="送信" >
+                <p><input type="submit" value="送信" ></p>
             </div>
         </form>
     </div>
