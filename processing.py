@@ -1,17 +1,18 @@
 import json
 import sys
+import functools
 
 sys.path.append('..')
-import liked_tweets
 import pandas as pd
 import numpy as np
-import sentence_vectorizer
-import functools
 import demoji
 from ja_sentence_segmenter.common.pipeline import make_pipeline
 from ja_sentence_segmenter.concatenate.simple_concatenator import concatenate_matching
 from ja_sentence_segmenter.normalize.neologd_normalizer import normalize
 from ja_sentence_segmenter.split.simple_splitter import split_newline, split_punctuation
+
+import liked_tweets
+import sentence_vectorizer
 
 pd.set_option('display.max_columns', 50)
 

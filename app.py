@@ -1,16 +1,15 @@
 import os
+
 from flask import Flask, request, redirect, render_template, flash, session, jsonify, url_for
 from werkzeug.utils import secure_filename
-from tensorflow.keras.models import Sequential, load_model
-from tensorflow.keras.preprocessing import image
 from requests_oauthlib import OAuth1Session
+import numpy as np
+
 import config
 import recent_search_v2
 import processing
-import urllib.parse
 
 
-import numpy as np
 
 
 classes = ["0","1","2","3","4","5","6","7","8","9"]
