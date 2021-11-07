@@ -35,4 +35,4 @@ def send_email():
     smtpobj.close()
 
 if __name__ == "__main__":
-    send_email.run()
+    send_email()
