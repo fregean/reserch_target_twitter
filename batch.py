@@ -1,12 +1,17 @@
 import smtplib
+import os
 from email.mime.text import MIMEText
 from email.utils import formatdate
+from os.path import join, dirname
 
-import config
+from dotenv import load_dotenv
+
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
 
 def send_email():
-    sendAddress = config.MAIL_ADDRESS
-    password = config.MAIL_PASSWORD
+    sendAddress = os.environ.get('MAIL_ADDRESS')
+    password = os.environ.get('MAIL_PASSWORD')
 
     subject = 'ごきげんいかがですか'
     bodyText = 'いつもおつかれさまです'

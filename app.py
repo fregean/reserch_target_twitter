@@ -1,16 +1,14 @@
 import os
+from os.path import join, dirname
 
 from flask import Flask, request, redirect, render_template, flash, session, jsonify, url_for
 from werkzeug.utils import secure_filename
 from requests_oauthlib import OAuth1Session
+from dotenv import load_dotenv
 import numpy as np
 
-import config
 import recent_search_v2
 import processing
-
-
-
 
 classes = ["0","1","2","3","4","5","6","7","8","9"]
 image_size = 28
@@ -21,10 +19,13 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 app = Flask(__name__)
 app.secret_key = 'hogehoge'
 
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-model = load_model('./model.h5')#学習済みモデルをロード
+#model = load_model('./model.h5')#学習済みモデルをロード
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -59,8 +60,8 @@ def upload_file():
 @app.route('/request_token',methods=['GET'])
 def request_token():
 
-    consumer_key = config.API_KEY
-    consumer_secret = config.API_SECRET
+    consumer_key = os.environ.get('API_KEY')
+    consumer_secret = os.environ.get('API_SECRET')
 
     # Get authorization
     request_token_url = "https://api.twitter.com/oauth/request_token"
@@ -84,8 +85,8 @@ def callback():
     verifier= request.args.get('oauth_verifier')
 
     oauth = OAuth1Session(
-            config.API_KEY,
-            client_secret=config.API_SECRET,
+            os.environ.get('API_KEY'),
+            client_secret=os.environ.get('API_SECRET'),
             resource_owner_key=oauth_token,
             #resource_owner_secret=oauth_token_secret,
             verifier=verifier
@@ -104,8 +105,8 @@ def get_oauth():
     access_token = session['twitter_oauth_token']['access_token']
     access_token_secret = session['twitter_oauth_token']['access_token_secret']
     oauth = OAuth1Session(
-            config.API_KEY,
-            client_secret=config.API_SECRET,
+            os.environ.get('API_KEY'),
+            client_secret=os.environ.get('API_SECRET'),
             resource_owner_key=access_token,
             resource_owner_secret=access_token_secret
         )
@@ -130,10 +131,6 @@ def post_tweets():
 def keep_waiting():
     twitter_id = request.args.get('twitter_id')
     return render_template("keep_waiting.html")
-
-
-
-
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 8000))

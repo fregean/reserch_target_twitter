@@ -1,13 +1,20 @@
 import requests
 import os
+from os.path import join, dirname
 import json
-import config
 from time import sleep
+
+from dotenv import load_dotenv
 
 # To set your enviornment variables in your terminal run the following line:
 # export 'BEARER_TOKEN'='<your_bearer_token>'
-bearer_token = config.BEARER_TOKEN
+
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
+bearer_token = os.environ.get('BEARER_TOKEN')
 PATH = "/Users/yottan/Desktop/Aidemy/reserch_target_twitter/data/liked_tweets.json"
+
 
 
 def create_url(user):

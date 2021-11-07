@@ -1,8 +1,10 @@
 import requests
 import os
 import json
-import config
+from os.path import join, dirname
+
 from requests_oauthlib import OAuth1Session
+from dotenv import load_dotenv
 
 search_url = "https://api.twitter.com/2/tweets/search/recent"
 PATH = "/Users/yottan/Desktop/Aidemy/reserch_target_twitter/data/search_tweet.json"
@@ -10,6 +12,8 @@ PATH = "/Users/yottan/Desktop/Aidemy/reserch_target_twitter/data/search_tweet.js
 # Optional params: start_time,end_time,since_id,until_id,max_results,next_token,
 # expansions,tweet.fields,media.fields,poll.fields,place.fields,user.fields
 
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
 
 def connect_to_endpoint(url, params, oauth):
     response = oauth.get(url, params=params)

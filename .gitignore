@@ -130,4 +130,5 @@ dmypy.json
 
 # key
 config.py
+.env
 
