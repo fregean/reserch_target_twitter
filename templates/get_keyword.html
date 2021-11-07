@@ -14,9 +14,17 @@
     </header>
 
     <div class='main'>
-        <h2>Finding Twitter Targeting_users Application</h2>
-        <p>あなたの関心のあるキーワードに基づいてフォローすべきユーザーを見つけましょう</p>
-        <p><a href="{{ url_for('request_token') }}">連携アプリ認証</a></p>
+        <h2> Finding Twitter Targeting_users Application</h2>
+        <p>関心のあるキーワードを一つ入力してください（例：「Kaggle」「業務効率化」）</p>
+        <form action='/post_tweets' method='POST' enctype="multipart/form-data">
+            <div>
+                <label for="keyword">キーワード：</label>
+                <input type='text' name='keyword' placeholder='キーワード'>
+            </div>
+            <div>
+                <input type="submit" value="送信" >
+            </div>
+        </form>
     </div>
 
     <footer>

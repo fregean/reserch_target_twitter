@@ -9,7 +9,7 @@ PATH = "/Users/yottan/Desktop/Aidemy/reserch_target_twitter/data/search_tweet.js
 
 # Optional params: start_time,end_time,since_id,until_id,max_results,next_token,
 # expansions,tweet.fields,media.fields,poll.fields,place.fields,user.fields
-query_params = {'query': '(Kaggle -is:retweet lang:ja)','expansions': 'author_id', 'tweet.fields': 'public_metrics','max_results':100}
+
 
 def connect_to_endpoint(url, params, oauth):
     response = oauth.get(url, params=params)
@@ -20,12 +20,14 @@ def connect_to_endpoint(url, params, oauth):
     return response.json()
 
 
-def search_tweet(oauth):
+def search_tweet(keyword, oauth):
+    print(f'キーワード：{keyword}')
+    query_params = {'query': f'({keyword} -is:retweet lang:ja)','expansions': 'author_id', 'tweet.fields': 'public_metrics','max_results':15}
     json_response = connect_to_endpoint(search_url, query_params, oauth)
-    jsonfile = json.dumps(json_response, sort_keys=True, ensure_ascii=False)
+    #jsonfile = json.dumps(json_response, sort_keys=True, ensure_ascii=False)
     with open(PATH, 'w') as file:
         json.dump(json_response, file)
-    return jsonfile
+    return json_response
 
 if __name__ == "__main__":
     search_tweet()

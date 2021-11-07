@@ -1,13 +1,11 @@
 import os
-from flask import Flask, request, redirect, render_template, flash, session, jsonify, url_for
+from flask import Flask, request, redirect, render_template, flash, session, jsonify
 from werkzeug.utils import secure_filename
 from tensorflow.keras.models import Sequential, load_model
 from tensorflow.keras.preprocessing import image
 from requests_oauthlib import OAuth1Session
 import config
 import recent_search_v2
-import processing
-import urllib.parse
 
 
 import numpy as np
@@ -99,7 +97,7 @@ def callback():
     session['twitter_oauth_token'] = {'access_token':access_token,'access_token_secret':access_token_secret}
     #oauth = get_oauth()
     # URLルート
-    return redirect(url_for('get_keyword'))
+    return redirect(request.url_root)
 
 def get_oauth():
     access_token = session['twitter_oauth_token']['access_token']
@@ -113,28 +111,9 @@ def get_oauth():
 
     return oauth
 
-@app.route('/get_keyword', methods=['GET'])
-def get_keyword():
-    return render_template("get_keyword.html")
-
-@app.route('/post_tweets', methods=['GET', 'POST'])
-def post_tweets():
-    if request.method == 'POST':
-        keyword = request.form.get('keyword')
-        json_response = recent_search_v2.search_tweet(keyword, get_oauth())
-        tweets = processing.return_tweets(json_response)
-        df_values = tweets.values.tolist()
-        df_columns = tweets.columns.tolist()
-    return render_template('post_tweets.html', df_values=df_values, df_columns=df_columns, title='いいね数の多いツイート上位10件',)
-
-@app.route('/keep_waiting', methods=['GET'])
-def keep_waiting():
-    twitter_id = request.args.get('twitter_id')
-    return render_template("keep_waiting.html")
-
-
-
-
+@app.route('/search_tweet', methods=['GET'])
+def search_tweet():
+    return recent_search_v2.search_tweet(get_oauth())
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 8000))
