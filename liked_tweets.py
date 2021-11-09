@@ -62,7 +62,6 @@ def connect_to_endpoint(url, tweet_fields):
 
 def get_liked_tweets(user_series):
     tweet_dic = {}
-    print('いいね')
     for user in user_series:
         url, tweet_fields = create_url(user)
         json_response = connect_to_endpoint(url, tweet_fields)
