@@ -48,7 +48,7 @@ def bearer_oauth(r):
 def connect_to_endpoint(url, tweet_fields):
     response = requests.request(
         "GET", url, auth=bearer_oauth, params=tweet_fields)
-    print(response.status_code)
+    #print(response.status_code)
     if response.status_code != 200:
         print('リクエスト回数制限のため15min待機')
         sleep(15*60)
@@ -62,15 +62,19 @@ def connect_to_endpoint(url, tweet_fields):
 
 def get_liked_tweets(user_series):
     tweet_dic = {}
+    print('いいね')
     for user in user_series:
         url, tweet_fields = create_url(user)
         json_response = connect_to_endpoint(url, tweet_fields)
         tweet_dic[user] = json_response
+    return tweet_dic
 
-    with open(PATH, 'w') as file:
-        json.dump(tweet_dic, file)
 
-    print(json.dumps(json_response, indent=4, sort_keys=True))
+    # with open(PATH, 'w') as file:
+    #     json.dump(tweet_dic, file)
+
+    #print(json.dumps(json_response, indent=4, sort_keys=True))
+
 
 
 # if __name__ == "__main__":

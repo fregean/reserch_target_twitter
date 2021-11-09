@@ -1,11 +1,12 @@
 import os
 from os.path import join, dirname
-
+import json
 from flask import Flask, request, redirect, render_template, flash, session, jsonify, url_for
 from werkzeug.utils import secure_filename
 from requests_oauthlib import OAuth1Session
 from dotenv import load_dotenv
 import numpy as np
+import ndjson
 
 import recent_search_v2
 import processing
@@ -122,22 +123,22 @@ def post_tweets():
     if request.method == 'POST':
         keyword = request.form.get('keyword')
         mail_address = request.form.get('mail_address')
-        session['client'] = {'mail_address': mail_address , 'keyword': keyword}
+        name = request.form.get('name')
         json_response = recent_search_v2.search_tweet(keyword, get_oauth())
         tweets = processing.return_tweets(json_response)
         df_values = tweets.values.tolist()
         df_columns = tweets.columns.tolist()
+        session['client'] = {'name': name, 'mail_address': mail_address , 'keyword': keyword, 'tweets': df_values}
     return render_template('post_tweets.html', df_values=df_values, df_columns=df_columns, title='いいね数の多いツイート上位10件',)
 
 @app.route('/display_information', methods=['GET'])
 def display_information():
     twitter_id = request.args.get('twitter_id')
     session['client']['twitter_id'] = twitter_id
-    with open('data/db_tweets.json', mode='w') as f:
-        data = json.dumps(session)
-        f.write(data)
+    with open('data/db_tweets.ndjson', mode='a') as f:
+        writer = ndjson.writer(f)
+        writer.writerow(session['client'])
     return render_template('display_information.html')
-
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 8000))

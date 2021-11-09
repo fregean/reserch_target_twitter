@@ -26,7 +26,7 @@ def connect_to_endpoint(url, params, oauth):
 
 def search_tweet(keyword, oauth):
     print(f'キーワード：{keyword}')
-    query_params = {'query': f'({keyword} -is:retweet lang:ja)','expansions': 'author_id', 'tweet.fields': 'public_metrics','max_results':15}
+    query_params = {'query': f'({keyword} -is:retweet lang:ja)','expansions': 'author_id', 'tweet.fields': 'public_metrics','max_results':100}
     json_response = connect_to_endpoint(search_url, query_params, oauth)
     #jsonfile = json.dumps(json_response, sort_keys=True, ensure_ascii=False)
     with open(PATH, 'w') as file:

@@ -8,7 +8,7 @@
             <tbody>
                 <p id="result"></p>
                 {%- for arr in df_values %}
-                <tr>{%- for val in arr[:2]%}<td><a href="/keep_waiting?twitter_id={{arr[2]}}">{{ val }}</a></td>{%- endfor %}</tr>
+                <tr>{%- for val in arr[:2]%}<td><a href="/display_information?twitter_id={{arr[2]}}">{{ val }}</a></td>{%- endfor %}</tr>
                 {%- endfor %}
             </tbody>
         </table>

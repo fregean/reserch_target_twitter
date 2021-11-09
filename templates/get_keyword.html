@@ -4,7 +4,7 @@
     <meta charset='UTF-8'>
     <meta name='viewport' content="device-width, initial-scale=1.0">
     <meta http-equiv='X-UA-Compatible' content="ie=edge">
-    <title>Finding Twitter Targeting_users Application</title>
+    <title>Finding Twitter Targeting_Users Application</title>
     <link rel='stylesheet' href="./static/stylesheet.css">
 </head>
 <body>
@@ -14,15 +14,17 @@
     </header>
 
     <div class='main'>
-        <h2> Finding Twitter Targeting_users Application</h2>
+        <h2> Finding Twitter Targeting_Users Application</h2>
         <form action='/post_tweets' method='POST' enctype="multipart/form-data">
             <div>
                 <p>関心のあるキーワードを一つ入力してください</p>
                 <label for="keyword">キーワード：</label>
                 <input type='text' name='keyword' placeholder='キーワード'>
-                <p>また、最後に結果を送信する送信先も入力してください</p>
+                <p>また、最後に結果を送信する送信先と宛名を入力してください</p>
                 <label for="keyword">送信先メールアドレス：</label>
                 <input type='text' name='mail_address' placeholder='メールアドレス'>
+                <label for="keyword">お名前：</label>
+                <input type='text' name='name' placeholder='お名前'>
             </div>
             <div>
                 <p><input type="submit" value="送信" ></p>
