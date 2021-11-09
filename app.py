@@ -31,30 +31,7 @@ def allowed_file(filename):
 
 
 @app.route('/', methods=['GET', 'POST'])
-def upload_file():
-    if request.method == 'POST':
-        if 'file' not in request.files:
-            flash('ファイルがありません')
-            return redirect(request.url)
-        file = request.files['file']
-        if file.filename == '':
-            flash('ファイルがありません')
-            return redirect(request.url)
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(UPLOAD_FOLDER, filename))
-            filepath = os.path.join(UPLOAD_FOLDER, filename)
-
-            #受け取った画像を読み込み、np形式に変換
-            img = image.load_img(filepath, grayscale=True, target_size=(image_size,image_size))
-            img = image.img_to_array(img)
-            data = np.array([img])
-            #変換したデータをモデルに渡して予測する
-            result = model.predict(data)[0]
-            predicted = result.argmax()
-            pred_answer = "これは " + classes[predicted] + " です"
-
-            return render_template("index.html",answer=pred_answer)
+def certification_app():
 
     return render_template("index.html",answer="")
 

@@ -8,7 +8,7 @@ from requests_oauthlib import OAuth1Session
 from dotenv import load_dotenv
 
 search_url = "https://api.twitter.com/2/tweets/search/recent"
-PATH = "/Users/yottan/Desktop/Aidemy/reserch_target_twitter/data/search_tweet.json"
+#PATH = "/data/search_tweet.json"
 
 # Optional params: start_time,end_time,since_id,until_id,max_results,next_token,
 # expansions,tweet.fields,media.fields,poll.fields,place.fields,user.fields
@@ -34,8 +34,8 @@ def search_tweet(keyword, oauth):
         'max_results': 20, 'end_time': period}
     json_response = connect_to_endpoint(search_url, query_params, oauth)
     #jsonfile = json.dumps(json_response, sort_keys=True, ensure_ascii=False)
-    with open(PATH, 'w') as file:
-        json.dump(json_response, file)
+    # with open(PATH, 'w') as file:
+    #     json.dump(json_response, file)
     return json_response
 
 # if __name__ == "__main__":

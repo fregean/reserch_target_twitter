@@ -13,7 +13,7 @@ dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
 bearer_token = os.environ.get('BEARER_TOKEN')
-PATH = "/Users/yottan/Desktop/Aidemy/reserch_target_twitter/data/liked_tweets.json"
+#PATH = "/Users/yottan/Desktop/Aidemy/reserch_target_twitter/data/liked_tweets.json"
 
 
 
