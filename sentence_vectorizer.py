@@ -5,7 +5,6 @@ import pandas as pd
 import numpy as np
 import torch
 import transformers
-
 from transformers import BertJapaneseTokenizer
 from tqdm import tqdm
 tqdm.pandas()

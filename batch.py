@@ -7,6 +7,7 @@ from email.mime.application import MIMEApplication
 from email.utils import formatdate
 from os.path import join, dirname
 import time
+import functools
 
 msg = MIMEMultipart()
 
@@ -15,7 +16,6 @@ import numpy as np
 import ndjson
 from dotenv import load_dotenv
 import sentence_vectorizer
-import functools
 import demoji
 from ja_sentence_segmenter.common.pipeline import make_pipeline
 from ja_sentence_segmenter.concatenate.simple_concatenator import concatenate_matching
