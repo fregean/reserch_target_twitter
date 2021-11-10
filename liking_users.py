@@ -54,7 +54,7 @@ def connect_to_endpoint(url, user_fields):
 def get_users(target_id):
     url, tweet_fields = create_url(target_id)
     json_response = connect_to_endpoint(url, tweet_fields)
-    with open(PATH, 'w') as file:
-        json.dump(json_response, file)
+    # with open(PATH, 'w') as file:
+    #     json.dump(json_response, file)
     #print(json.dumps(json_response, indent=4, sort_keys=True))
     return json_response

@@ -273,7 +273,6 @@ def main(dir):
                 candidate_users = select_tweets(client.keyword, df_liked_tweets)
                 candidate_users_segments = segment_tweet(candidate_users)
                 df_candidate_users = vectorize_candidate_segments(candidate_users_segments)
-                #dic_degree, dic_index = calculate_cosine_similarity(df_target_segments, df_candidate_users)
                 derived_result(client, df_target_segments, df_candidate_users, df_users, df_liked_tweets)
 
                 # 終了時間
