@@ -18,7 +18,7 @@
         <form action='/post_tweets' method='POST' enctype="multipart/form-data">
             <div>
                 {% if is_error==1 %}
-                    <p>{{ ツイートが存在しなかったのでもう一度、別のキーワードを入力してください }}</p>
+                    <p>{{ ツイートが存在しなかったのでもう一度別のキーワードを入力してください }}</p>
                 {% else %}
                     <p>{{ 関心のあるキーワードを一つ入力してください }}</p>
                 <label for="keyword">キーワード：</label>
