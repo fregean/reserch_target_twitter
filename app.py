@@ -82,7 +82,7 @@ def get_oauth():
 
 @app.route('/get_keyword', methods=['GET'])
 def get_keyword():
-    return render_template('get_keyword.html', is_error=False)
+    return render_template('get_keyword.html', is_error=0)
 
 @app.route('/post_tweets', methods=['GET', 'POST'])
 def post_tweets():
@@ -93,7 +93,7 @@ def post_tweets():
         json_response = recent_search_v2.search_tweet(keyword, get_oauth())
         if not 'data' in json_response:
             # エラーメッセージを受け取った場合
-            return render_template('get_keyword.html', is_error=True)
+            return render_template('get_keyword.html', is_error=1)
         tweets = processing.return_tweets(json_response)
         df_values = tweets.values.tolist()
         df_columns = tweets.columns.tolist()
