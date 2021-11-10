@@ -12,7 +12,9 @@ tqdm==4.47.0
 fugashi
 ipadic
 spacy
-ginza ja-ginza-electra ja_ginza
+ginza
+ja-ginza-electra
+ja_ginza
 --find-links https://download.pytorch.org/whl/torch_stable.html
 torch==1.7.1+cpu
 
