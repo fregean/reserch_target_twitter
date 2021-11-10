@@ -26,7 +26,7 @@ def connect_to_endpoint(url, params, oauth):
 
 def search_tweet(keyword, oauth):
     nowadays = datetime.now()
-    before_yesterday = nowadays - timedelta(2)
+    before_yesterday = nowadays - timedelta(1)
     period = before_yesterday.strftime("%Y-%m-%dT%H:%M:%SZ")
 
     query_params = {'query': f'({keyword} -is:retweet lang:ja)',\
