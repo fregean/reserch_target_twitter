@@ -110,6 +110,7 @@ def display_information():
     with open(DIR, mode='a+') as f:
         writer = ndjson.writer(f)
         writer.writerow(session['client'])
+
     return render_template('display_information.html')
 
 if __name__ == "__main__":
