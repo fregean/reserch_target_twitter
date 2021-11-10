@@ -132,3 +132,8 @@ dmypy.json
 config.py
 .env
 
+# vscode
+.vscode
+
+# mac
+.DS_Store
