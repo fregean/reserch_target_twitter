@@ -249,17 +249,20 @@ def main(dir):
     """
     client_data_list = []
 
-    with open(dir, 'r+') as json_file:
-        # 現在DBにあるクライアント情報を取得
-        json_client_data = ndjson.load(json_file)
-        print(f'DB情報：{json_client_data}')
-        # DBの内容を空にする
-        json_file.truncate(0)
+    # with open(dir, 'r+') as json_file:
+    #     # 現在DBにあるクライアント情報を取得
+    #     json_client_data = ndjson.load(json_file)
+    #     print(f'DB情報：{json_client_data}')
 
-        for data in json_client_data:
+    with open(dir, 'r+') as json_file:
+        # DBの内容を空にする
+        #json_file.truncate(0)
+        for data in json_file:
             try:
             # 開始時間
                 start_time = time.perf_counter()
+                data = json.loads(data)
+                print(data)
                 # クライアントクラスの初期化
                 client = Client(data)
                 # クライアントデータ準備

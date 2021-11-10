@@ -106,9 +106,12 @@ def display_information():
     session['client']['twitter_id'] = twitter_id
     # if not os.path.exists(DIR):
     #     os.mkdir(DIR)
-    with open(DIR, mode='a+') as f:
-        writer = ndjson.writer(f)
-        writer.writerow(session['client'])
+    # with open(DIR, mode='a+') as f:
+    #     writer = ndjson.writer(f)
+    #     writer.writerow(session['client'])
+
+    with open(DIR, mode='a') as f:
+        json.dump(session['client']+'\n', f, indent=4)
 
     return render_template('display_information.html')
 
