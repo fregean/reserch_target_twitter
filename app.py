@@ -102,6 +102,7 @@ def post_tweets():
 @app.route('/display_information', methods=['GET'])
 def display_information():
     DIR='db_tweets.ndjson'
+    DIR='db_tweets.json'
     twitter_id = request.args.get('twitter_id')
     session['client']['twitter_id'] = twitter_id
     # if not os.path.exists(DIR):
