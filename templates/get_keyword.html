@@ -14,10 +14,10 @@
     </header>
 
     <div class='main'>
-        <h2> Finding Twitter Targeting_Users Application</h2>
+        <h2>Finding Twitter Targeting_Users Application</h2>
         <form action='/post_tweets' method='POST' enctype="multipart/form-data">
             <div>
-                <p>関心のあるキーワードを一つ入力してください</p>
+                <p>{{ explanation }}</p>
                 <label for="keyword">キーワード：</label>
                 <input type='text' name='keyword' placeholder='キーワード'>
                 <p>また、最後に結果を送信する送信先と宛名を入力してください</p>

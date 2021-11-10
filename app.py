@@ -12,11 +12,6 @@ import ndjson
 import recent_search_v2
 import processing
 
-classes = ["0","1","2","3","4","5","6","7","8","9"]
-image_size = 28
-
-UPLOAD_FOLDER = "uploads"
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__)
 app.secret_key = 'hogehoge'
@@ -24,17 +19,10 @@ app.secret_key = 'hogehoge'
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-#model = load_model('./model.h5')#学習済みモデルをロード
-
 
 @app.route('/', methods=['GET', 'POST'])
 def certification_app():
-
     return render_template("index.html",answer="")
-
 
 @app.route('/request_token',methods=['GET'])
 def request_token():
@@ -94,7 +82,7 @@ def get_oauth():
 
 @app.route('/get_keyword', methods=['GET'])
 def get_keyword():
-    return render_template("get_keyword.html")
+    return render_template('get_keyword.html', explanation='関心のあるキーワードを一つ入力してください')
 
 @app.route('/post_tweets', methods=['GET', 'POST'])
 def post_tweets():
@@ -103,6 +91,9 @@ def post_tweets():
         mail_address = request.form.get('mail_address')
         name = request.form.get('name')
         json_response = recent_search_v2.search_tweet(keyword, get_oauth())
+        if not 'data' in json_response:
+            # エラーメッセージを受け取った場合
+            return render_template('get_keyword.html', explanation='ツイートが存在しなかったのでもう一度キーワードを入力してください')
         tweets = processing.return_tweets(json_response)
         df_values = tweets.values.tolist()
         df_columns = tweets.columns.tolist()
@@ -117,6 +108,10 @@ def display_information():
         writer = ndjson.writer(f)
         writer.writerow(session['client'])
     return render_template('display_information.html')
+
+@app.route('/display_exception', methods=['GET'])
+def display_exception():
+    return render_template('display_exception.html')
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 8000))
