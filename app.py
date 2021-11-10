@@ -102,9 +102,13 @@ def post_tweets():
 
 @app.route('/display_information', methods=['GET'])
 def display_information():
+
+    DIR='data/db_tweets.ndjson'
     twitter_id = request.args.get('twitter_id')
     session['client']['twitter_id'] = twitter_id
-    with open('data/db_tweets.ndjson', mode='a') as f:
+    if not os.path.exists(DIR):
+        os.mkdir(DIR)
+    with open(DIR, mode='a') as f:
         writer = ndjson.writer(f)
         writer.writerow(session['client'])
     return render_template('display_information.html')
