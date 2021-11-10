@@ -98,7 +98,7 @@ def post_tweets():
         df_values = tweets.values.tolist()
         df_columns = tweets.columns.tolist()
         session['client'] = {'name': name, 'mail_address': mail_address , 'keyword': keyword, 'tweets': df_values}
-    return render_template('post_tweets.html', df_values=df_values, df_columns=df_columns, title='いいね数の多いツイート上位10件',)
+    return render_template('post_tweets.html', df_values=df_values, df_columns=df_columns, title='いいね数の多いツイート上位10件まで',)
 
 @app.route('/display_information', methods=['GET'])
 def display_information():
@@ -108,10 +108,6 @@ def display_information():
         writer = ndjson.writer(f)
         writer.writerow(session['client'])
     return render_template('display_information.html')
-
-@app.route('/display_exception', methods=['GET'])
-def display_exception():
-    return render_template('display_exception.html')
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 8000))

@@ -252,33 +252,39 @@ def main(dir):
     with open(dir, 'r+') as json_file:
         # 現在DBにあるクライアント情報を取得
         json_client_data = ndjson.load(json_file)
+        print(f'DB情報：{json_client_data}')
         # DBの内容を空にする
         json_file.truncate(0)
 
         for data in json_client_data:
+            try:
             # 開始時間
-            start_time = time.perf_counter()
-            # クライアントクラスの初期化
-            client = Client(data)
-            # クライアントデータ準備
-            client.extract_data()
+                start_time = time.perf_counter()
+                # クライアントクラスの初期化
+                client = Client(data)
+                # クライアントデータ準備
+                client.extract_data()
 
-            df_target_segments = segment_target_tweet(client.target_tweet)
-            df_target_segments = vectorize_target_segments(df_target_segments)
+                df_target_segments = segment_target_tweet(client.target_tweet)
+                df_target_segments = vectorize_target_segments(df_target_segments)
 
-            df_users = get_liking_users(client.target_tweet_id)
-            df_liked_tweets = get_liking_users_liked_tweets(df_users, client.target_tweet)
-            candidate_users = select_tweets(client.keyword, df_liked_tweets)
-            candidate_users_segments = segment_tweet(candidate_users)
-            df_candidate_users = vectorize_candidate_segments(candidate_users_segments)
-            #dic_degree, dic_index = calculate_cosine_similarity(df_target_segments, df_candidate_users)
-            derived_result(client, df_target_segments, df_candidate_users, df_users, df_liked_tweets)
+                df_users = get_liking_users(client.target_tweet_id)
+                df_liked_tweets = get_liking_users_liked_tweets(df_users, client.target_tweet)
+                candidate_users = select_tweets(client.keyword, df_liked_tweets)
+                candidate_users_segments = segment_tweet(candidate_users)
+                df_candidate_users = vectorize_candidate_segments(candidate_users_segments)
+                #dic_degree, dic_index = calculate_cosine_similarity(df_target_segments, df_candidate_users)
+                derived_result(client, df_target_segments, df_candidate_users, df_users, df_liked_tweets)
 
-            # 終了時間
-            execution_time = time.perf_counter() - start_time
-            client.execution_time = execution_time
+                # 終了時間
+                execution_time = time.perf_counter() - start_time
+                client.execution_time = execution_time
 
-            client.send_email()
+                client.send_email()
+            except Exception as e:
+                print(e)
+
+            print('送信成功しました')
 
 
 if __name__ == "__main__":
