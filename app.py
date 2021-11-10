@@ -22,7 +22,7 @@ load_dotenv(dotenv_path)
 
 @app.route('/', methods=['GET', 'POST'])
 def certification_app():
-    return render_template("index.html",answer="")
+    return render_template("index.html")
 
 @app.route('/request_token',methods=['GET'])
 def request_token():
@@ -84,25 +84,24 @@ def get_oauth():
 def get_keyword():
     return render_template('get_keyword.html', is_error=0)
 
-@app.route('/post_tweets', methods=['GET', 'POST'])
+@app.route('/post_tweets', methods=['POST'])
 def post_tweets():
-    if request.method == 'POST':
-        keyword = request.form.get('keyword')
-        mail_address = request.form.get('mail_address')
-        name = request.form.get('name')
-        json_response = recent_search_v2.search_tweet(keyword, get_oauth())
-        if not 'data' in json_response:
-            # エラーメッセージを受け取った場合
-            return render_template('get_keyword.html', is_error=1)
-        tweets = processing.return_tweets(json_response)
-        df_values = tweets.values.tolist()
-        df_columns = tweets.columns.tolist()
-        session['client'] = {'name': name, 'mail_address': mail_address , 'keyword': keyword, 'tweets': df_values}
+    keyword = request.form.get('keyword')
+    mail_address = request.form.get('mail_address')
+    name = request.form.get('name')
+    json_response = recent_search_v2.search_tweet(keyword, get_oauth())
+    if not 'data' in json_response:
+        # エラーメッセージを受け取った場合
+        return render_template('get_keyword.html', is_error=1)
+    tweets = processing.return_tweets(json_response)
+    df_values = tweets.values.tolist()
+    df_columns = tweets.columns.tolist()
+    session['client'] = {'name': name, 'mail_address': mail_address , 'keyword': keyword, 'tweets': df_values}
     return render_template('post_tweets.html', df_values=df_values, df_columns=df_columns, title='いいね数の多いツイート上位10件まで',)
 
 @app.route('/display_information', methods=['GET'])
 def display_information():
-    DIR='data/db_tweets.ndjson'
+    DIR='db_tweets.ndjson'
     twitter_id = request.args.get('twitter_id')
     session['client']['twitter_id'] = twitter_id
     # if not os.path.exists(DIR):
