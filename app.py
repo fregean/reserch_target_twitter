@@ -112,7 +112,7 @@ def display_information():
     #     writer.writerow(session['client'])
 
     with open(DIR, mode='a') as f:
-        json.dump(session['client']+'\n', f, indent=4)
+        json.dumps(session['client']+'\n', f, indent=4)
 
     return render_template('display_information.html')
 
