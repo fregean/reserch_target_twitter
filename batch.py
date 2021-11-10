@@ -289,5 +289,5 @@ def main(dir):
 
 if __name__ == "__main__":
 
-    DIR = 'data/db_tweets.ndjson'
+    DIR = '/tmp/db_tweets.ndjson'
     main(DIR)
