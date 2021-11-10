@@ -283,13 +283,12 @@ def main(dir):
                 client.execution_time = execution_time
 
                 client.send_email()
+                print('送信成功しました')
             except Exception as e:
                 print(e)
-
-            print('送信成功しました')
 
 
 if __name__ == "__main__":
 
-    DIR = 'db_tweets.ndjson'
+    DIR = 'db_tweets.json'
     main(DIR)
