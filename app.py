@@ -20,7 +20,7 @@ dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
 def certification_app():
     return render_template("index.html")
 
@@ -110,7 +110,6 @@ def display_information():
     with open(DIR, mode='a+') as f:
         writer = ndjson.writer(f)
         writer.writerow(session['client'])
-
     # with open(DIR, mode='a') as f:
     #     data = json.dumps(session['client'])
     #     f.write(data + '\n')
