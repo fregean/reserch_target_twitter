@@ -1,5 +1,4 @@
 header {
-    background-color: currentColor;
     height: 60px;
     margin: -8px;
     display: flex;
@@ -45,6 +44,13 @@ p {
     text-align: center;
 }
 
+li {
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    width: 490px;
+}
+
 .answer {
     color: #444444;
     margin: 70px 0px 30px 0px;
@@ -76,3 +82,48 @@ small {
     left: 0;
     bottom: 0;
 }
+
+label{
+    display: inline-block;
+    text-align: right;
+    width: 180px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #428bca;
+    border-color: #357ebd;
+    padding: 8px-16px;
+
+}
+
+.btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #55acee;
+    background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.15));
+    border: #3b94d9;
+    white-space: nowrap;
+    padding: 6px-12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.btn-lg {
+    padding: 10px-16px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 6px;
+}
+

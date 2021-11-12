@@ -16,11 +16,11 @@
     <div class='main'>
         <h2>Finding Twitter Targeting_Users Application</h2>
         <p>あなたの関心のあるキーワードに基づいてインプレッションすべきユーザーを見つけましょう</p>
-        <p><a href="{{ url_for('request_token') }}">連携アプリ認証</a></p>
+        <p><button type="button" class="btn btn-primary btn-lg" onclick="location.href='{{ url_for("request_token") }}'">Start App</button></p>
     </div>
 
     <footer>
-        <img class="footer_img" src="./static/images/logo_color.png" alt="wywy">
+        <img class="footer_img">
     </footer>
 </body>
 </html>

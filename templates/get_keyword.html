@@ -18,26 +18,28 @@
         <form action='/post_tweets' method='POST' enctype="multipart/form-data">
             <div>
                 {% if is_error==1 %}
-                    <p>ツイートが存在しなかったのでもう一度別のキーワードを入力してください</p>
+                    <li style="line-height: 4em">ツイートが存在しなかったのでもう一度別のキーワードを入力してください</li>
                 {% else %}
-                    <p>関心のあるキーワードを一つ入力してください</p>
+                    <li style="line-height: 4em">関心のあるキーワードを一つ入力してください</li>
                 {% endif %}
                 <label for="keyword">キーワード：</label>
                 <input type='text' name='keyword' placeholder='キーワード'>
-                <p>また、最後に結果を送信する送信先と宛名を入力してください</p>
+                <li style="line-height: 4em">処理結果をレポートするための送信先と宛名を入力してください</li>
                 <label for="keyword">送信先メールアドレス：</label>
                 <input type='text' name='mail_address' placeholder='メールアドレス'>
-                <label for="keyword">お名前：</label>
-                <input type='text' name='name' placeholder='お名前'>
+                <div>
+                    <label for="keyword">宛名：</label>
+                    <input type='text' name='name' placeholder='お名前'>
+                </div>
             </div>
             <div>
-                <p><input type="submit" value="送信" ></p>
+                <div style="line-height: 9em"><input class="btn btn-primary btn-lg" type="submit" value="Send" ></div>
             </div>
         </form>
     </div>
 
     <footer>
-        <img class="footer_img" src="./static/images/logo_color.png" alt="wywy">
+        <img class="footer_img">
     </footer>
 </body>
 </html>
