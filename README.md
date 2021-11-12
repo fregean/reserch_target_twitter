@@ -109,3 +109,81 @@ flaskの処理はここまでで終了です。ここからはpythonのバッチ
 
 ![アプリ設計図 (12)](https://user-images.githubusercontent.com/31781305/141421408-693d7ebe-5e6e-45e7-b356-28c1a113bbe0.png)
 
+## 使用方法
+
+### 準備
+
+- Twitter開発者アカウントの申請
+   - Twitterにログインした状態で以下のサイトのステップ１に従って、開発者アカウントの申請を行います。
+      - [新しいTwitterAPIv2への最初のリクエストを行うためのステップバイステップガイド](https://developer.twitter.com/en/docs/tutorials/step-by-step-guide-to-making-your-first-request-to-the-twitter-api-v2)
+      - 日本語の参考ブログ：[2021年度版 Twitter API利用申請の例文からAPIキーの取得まで詳しく解説](https://www.itti.jp/web-direction/how-to-apply-for-twitter-api/)
+
+- Twitterのキーおよびトークンの発行
+   - Twitter開発者アカウント申請が承認されたら、以下のサイトのステップ2：プロジェクトを作成し、アプリを接続します。
+      - [新しいTwitterAPIv2への最初のリクエストを行うためのステップバイステップガイド](https://developer.twitter.com/en/docs/tutorials/step-by-step-guide-to-making-your-first-request-to-the-twitter-api-v2)
+   - アプリが作成できたら、「API Key」「API Secret」「Bearer Token」の3つを発行します。
+   - TwitterのキーとトークンはOAuth認証（アクセストークンの要求と応答）という手続きで必要になります。
+      
+- GmailアドレスとGmailのアプリパスワードの用意
+   - 以下のサイトからアプリパスワードを発行する
+      - [アプリ パスワードを作成、使用する](https://support.google.com/mail/answer/185833?hl=ja)
+   - このGmailアドレスは、アプリの処理結果の送信用アドレスになります。
+
+- .envファイルの準備
+   - 以下の形式を記述したファイルを.envと名付けて作成します。
+   - 上で準備した「API Key」「API Secret」「Bearer Token」「Gmailアドレス」「アプリパスワード」を以下の形式中の「""」内に貼り付ければファイルの完成です。
+   - .envファイルは、app.pyと同じディレクトリに配置します。
+
+```
+API_KEY = ""
+API_SECRET = ""
+BEARER_TOKEN = ""
+MAIL_ADDRESS = ""
+MAIL_PASSWORD = ""
+```
+
+- Twitter Callback URLの用意
+   - 以下の開発者ポータルのダッシュボードにアクセスし、上で作成したアプリ名を左のメニューから見つけて、Setting（歯車マーク）を開き、「3-legged OAuth」を有効にします。
+   - [Developer Portal Dashboard](https://developer.twitter.com/en/portal/dashboard)
+   - 以下の形式で「Callback URLs」を記述します。
+      - http://ローカルIPアドレス/callback
+      - `python app.py`を実行して、flaskサーバーを起動したときに表示されるローカルIPアドレス
+      - (例) 環境によって異なりますが、以下のようなローカルIPアドレスが表示されます。
+         - `Running on http://192.168.10.101:8000/ (Press CTRL+C to quit)`
+         - 上の場合は、「Callback URLs」を`http://192.168.10.101:8000/callback`とします。
+   - 「Callback URLs」を書いたら、他は書かずにsaveします。  
+
+### 実行
+
+- リポジトリをクローンします。
+
+```
+git clone https://github.com/fregean/reserch_target_twitter.git
+```
+
+- 移動して、app.pyを実行します。
+```
+cd reserch_target_twitter
+python app.py
+```
+
+- 以下の
+<img width="730" alt="スクリーンショット 2021-11-12 15 24 16" src="https://user-images.githubusercontent.com/31781305/141420313-72ac77db-0390-4312-b127-6dcc4f6bb96d.png">
+<img width="713" alt="スクリーンショット 2021-11-12 14 40 51" src="https://user-images.githubusercontent.com/31781305/141416308-44ed6808-6ca2-4de8-9627-98610d8ddf37.png">
+<img width="680" alt="スクリーンショット 2021-11-12 15 24 55" src="https://user-images.githubusercontent.com/31781305/141420381-1617f889-1695-42d6-8ca7-020db00280ed.png">
+<img width="1318" alt="スクリーンショット 2021-11-12 15 25 27" src="https://user-images.githubusercontent.com/31781305/141420431-020f6865-da0a-4c3a-87d3-1e9f396c1bc7.png">
+<img width="944" alt="スクリーンショット 2021-11-12 15 25 55" src="https://user-images.githubusercontent.com/31781305/141420475-59bec8ee-8fcb-4cce-b415-311c9fdf9ad3.png">
+
+- 最後の画像のページが表示されたら、batch.pyを実行します。
+
+```
+python batch.py
+```
+※「15分ほどで結果をメールに送信します」と表示されているのは、元々スケジューラで10分ごとにバッチ処理をする設計だったためです。
+batch.pyを実行すると、アプリを利用した一人のユーザーにつき1〜2分でメールのレポートが届きます。
+batch.pyを実行するたびに、アプリを利用したユーザーの履歴が削除されます。
+
+- 1〜2分すると、メールが届きます。
+
+
+
