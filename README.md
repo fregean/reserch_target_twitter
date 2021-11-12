@@ -166,13 +166,14 @@ git clone https://github.com/fregean/reserch_target_twitter.git
 cd reserch_target_twitter
 python app.py
 ```
+- コマンドラインに表示された `Running on` 以下のIPアドレスにアクセスすると、ブラウザに以下のページが表示されるので、ページの指示に従ってボタン押&入力を進めてください。
+ 
 
-- 以下の
-<img width="730" alt="スクリーンショット 2021-11-12 15 24 16" src="https://user-images.githubusercontent.com/31781305/141420313-72ac77db-0390-4312-b127-6dcc4f6bb96d.png">
-<img width="713" alt="スクリーンショット 2021-11-12 14 40 51" src="https://user-images.githubusercontent.com/31781305/141416308-44ed6808-6ca2-4de8-9627-98610d8ddf37.png">
-<img width="680" alt="スクリーンショット 2021-11-12 15 24 55" src="https://user-images.githubusercontent.com/31781305/141420381-1617f889-1695-42d6-8ca7-020db00280ed.png">
-<img width="1318" alt="スクリーンショット 2021-11-12 15 25 27" src="https://user-images.githubusercontent.com/31781305/141420431-020f6865-da0a-4c3a-87d3-1e9f396c1bc7.png">
-<img width="944" alt="スクリーンショット 2021-11-12 15 25 55" src="https://user-images.githubusercontent.com/31781305/141420475-59bec8ee-8fcb-4cce-b415-311c9fdf9ad3.png">
+<img width="500" alt="スクリーンショット 2021-11-12 15 24 16" src="https://user-images.githubusercontent.com/31781305/141420313-72ac77db-0390-4312-b127-6dcc4f6bb96d.png">
+<img width="500" alt="スクリーンショット 2021-11-12 14 40 51" src="https://user-images.githubusercontent.com/31781305/141416308-44ed6808-6ca2-4de8-9627-98610d8ddf37.png">
+<img width="500" alt="スクリーンショット 2021-11-12 15 24 55" src="https://user-images.githubusercontent.com/31781305/141420381-1617f889-1695-42d6-8ca7-020db00280ed.png">
+<img width="500" alt="スクリーンショット 2021-11-12 15 25 27" src="https://user-images.githubusercontent.com/31781305/141420431-020f6865-da0a-4c3a-87d3-1e9f396c1bc7.png">
+<img width="500" alt="スクリーンショット 2021-11-12 15 25 55" src="https://user-images.githubusercontent.com/31781305/141420475-59bec8ee-8fcb-4cce-b415-311c9fdf9ad3.png">
 
 - 最後の画像のページが表示されたら、batch.pyを実行します。
 
