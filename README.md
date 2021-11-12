@@ -147,7 +147,7 @@ MAIL_PASSWORD = ""
    - [Developer Portal Dashboard](https://developer.twitter.com/en/portal/dashboard)
    - 以下の形式で「Callback URLs」を記述します。
       - http://ローカルIPアドレス/callback
-      - `python app.py`を実行して、flaskサーバーを起動したときに表示されるローカルIPアドレス
+      - `python app.py`を実行して、flaskサーバーを起動したときに表示されるローカルIPアドレスを使ってください。
       - (例) 環境によって異なりますが、以下のようなローカルIPアドレスが表示されます。
          - `Running on http://192.168.10.101:8000/ (Press CTRL+C to quit)`
          - 上の場合は、「Callback URLs」を`http://192.168.10.101:8000/callback`とします。
