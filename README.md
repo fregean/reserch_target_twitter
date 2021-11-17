@@ -46,7 +46,7 @@ Twitterで自社製品を広告したいとき、どんなユーザーにツイ�
 
 - ルートディレクトリ（トップページ）
     - ①トップページ表示
-    - ②クライアントが「Start App」ボタンが押す
+    - ②クライアントが「Login with Twitter」ボタンが押す
         - ③Twitterに開発者のapi_key、api_key_secretを送る
         - ④Twitterからリクエストトークンを受け取る
         - ⑤Twitter連携アプリ認証URL表示
